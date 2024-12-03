@@ -2,14 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-	padding: 0px;
-	margin: 0px;
-	border: none;
+html,
+body {
+  height: 100%;
 }
-
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }

@@ -3,40 +3,41 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'environments/environment.development';
+import { CalendarDay } from '@data/calendar-day.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CalendarService {
-  private apiUrl = `${environment.apiUrl}/api/Calendar`;
+export class CalendarDayService {
+  private apiUrl = `${environment.apiUrl}/api/CalendarDay`;
 
   constructor(private http: HttpClient) {}
 
-  getCalendarById(id: string): Observable<Calendar> {
+  getCalendarDayById(id: string): Observable<CalendarDay> {
     return this.http
-      .get<Calendar>(`${this.apiUrl}/${id}`)
+      .get<CalendarDay>(`${this.apiUrl}/${id}`)
       .pipe(catchError(this.handleError));
   }
 
-  getAllCalendars(): Observable<Calendar[]> {
+  getCalendarDaysByCalendarId(calendarId: string): Observable<CalendarDay[]> {
     return this.http
-      .get<Calendar[]>(this.apiUrl)
+      .get<CalendarDay[]>(`${this.apiUrl}/by-calendar/${calendarId}`)
       .pipe(catchError(this.handleError));
   }
 
-  addCalendar(calendar: Calendar): Observable<Calendar> {
+  addCalendarDay(calendarDay: CalendarDay): Observable<CalendarDay> {
     return this.http
-      .post<Calendar>(this.apiUrl, calendar, this.httpOptions)
+      .post<CalendarDay>(this.apiUrl, calendarDay, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
-  updateCalendar(id: string, calendar: Calendar): Observable<void> {
+  updateCalendarDay(id: string, calendarDay: CalendarDay): Observable<void> {
     return this.http
-      .put<void>(`${this.apiUrl}/${id}`, calendar, this.httpOptions)
+      .put<void>(`${this.apiUrl}/${id}`, calendarDay, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
-  deleteCalendar(id: string): Observable<void> {
+  deleteCalendarDay(id: string): Observable<void> {
     return this.http
       .delete<void>(`${this.apiUrl}/${id}`)
       .pipe(catchError(this.handleError));
