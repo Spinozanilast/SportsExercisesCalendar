@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using SportTasksCalendar.Application.Data.Converters;
 using SportTasksCalendar.Application.Models.Enums;
 
 namespace SportTasksCalendar.Application.Models;
@@ -10,13 +11,14 @@ public class Exercise
     public string Description { get; set; } = string.Empty;
     public TimeOnly StartDate { get; set; }
     public TimeOnly EndDate { get; set; }
+
     public ExerciseCategory Category { get; set; }
+
     public ExerciseStatus Status { get; set; } = ExerciseStatus.NotStarted;
 
     public Guid CalendarDayId { get; set; }
 
-    [JsonIgnore]
-    public CalendarDay CalendarDay { get; set; }
+    [JsonIgnore] public CalendarDay CalendarDay { get; set; }
 
     public string GetProgressIndicator()
     {
