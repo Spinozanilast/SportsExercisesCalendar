@@ -1,5 +1,4 @@
-﻿using System.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SportTasksCalendar.Application.Data;
 using SportTasksCalendar.Application.Models;
 
@@ -14,6 +13,7 @@ public class CalendarDayRepository(ApplicationDbContext dbContext) : ICalendarDa
         return await _dbContext.CalendarDays
             .AsNoTracking()
             .Where(cd => cd.CalendarId == calendarId)
+            .Include(cd => cd.SportTasks)
             .ToListAsync();
     }
 
@@ -22,6 +22,7 @@ public class CalendarDayRepository(ApplicationDbContext dbContext) : ICalendarDa
         return await _dbContext.CalendarDays
             .AsNoTracking()
             .Where(cd => cd.CalendarId == calendarId && cd.Date == date)
+            .Include(cd => cd.SportTasks)
             .FirstOrDefaultAsync();
     }
 
@@ -30,6 +31,7 @@ public class CalendarDayRepository(ApplicationDbContext dbContext) : ICalendarDa
         return await _dbContext.CalendarDays
             .AsNoTracking()
             .Where(cd => cd.Id == calendarDayId)
+            .Include(cd => cd.SportTasks)
             .FirstOrDefaultAsync();
     }
 

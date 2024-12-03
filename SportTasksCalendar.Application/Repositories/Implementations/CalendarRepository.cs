@@ -12,6 +12,8 @@ public class CalendarRepository(ApplicationDbContext dbContext) : ICalendarRepos
     {
         return await _dbContext.Calendars
             .AsNoTracking()
+            .Include(c => c.CalendarDays)
+            .ThenInclude(cd => cd.SportTasks)
             .ToListAsync();
     }
 

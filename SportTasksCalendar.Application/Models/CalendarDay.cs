@@ -1,4 +1,6 @@
-﻿namespace SportTasksCalendar.Application.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace SportTasksCalendar.Application.Models;
 
 public class CalendarDay
 {
@@ -7,5 +9,6 @@ public class CalendarDay
     public Guid CalendarId { get; set; }
     
     public List<Exercise> SportTasks { get; set; } = [];
+    [JsonIgnore]
     public Calendar Calendar { get; set; }
 }

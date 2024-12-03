@@ -1,4 +1,5 @@
 using SportTasksCalendar.Application;
+using SportTasksCalendar.Application.Data.Extensions;
 using SportTasksCalendar.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,7 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
+    app.Services.InitializeDb();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
