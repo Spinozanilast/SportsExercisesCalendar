@@ -1,0 +1,12 @@
+.git/
+.vscode/
+.histor/
+.idea/
+.next/
+.history/
+
+obj/
+bin/
+node-modules/
+
+*.user

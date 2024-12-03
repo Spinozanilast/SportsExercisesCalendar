@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportTasksCalendar.Api", "SportTasksCalendar.Api\SportTasksCalendar.Api.csproj", "{F248C57B-58FE-4F3C-ADA7-609CCAE13103}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportTasksCalendar.Application", "SportTasksCalendar.Application\SportTasksCalendar.Application.csproj", "{29CCB17A-1D6F-4D9E-B4CA-CB50E19235DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F248C57B-58FE-4F3C-ADA7-609CCAE13103}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F248C57B-58FE-4F3C-ADA7-609CCAE13103}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F248C57B-58FE-4F3C-ADA7-609CCAE13103}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F248C57B-58FE-4F3C-ADA7-609CCAE13103}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29CCB17A-1D6F-4D9E-B4CA-CB50E19235DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29CCB17A-1D6F-4D9E-B4CA-CB50E19235DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29CCB17A-1D6F-4D9E-B4CA-CB50E19235DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29CCB17A-1D6F-4D9E-B4CA-CB50E19235DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
