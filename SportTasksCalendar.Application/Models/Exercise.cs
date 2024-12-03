@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using SportTasksCalendar.Application.Data.Converters;
 using SportTasksCalendar.Application.Models.Enums;
 
 namespace SportTasksCalendar.Application.Models;
