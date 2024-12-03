@@ -1,0 +1,28 @@
+<div class="flex justify-center items-center flex-col gap-2">
+  <div class="flex flex-row gap-2">
+    <mat-form-field>
+      <mat-label>Calendar Boundaries</mat-label>
+      <mat-date-range-input
+        [formGroup]="calendarBoundaries"
+        [rangePicker]="campaignOnePicker"
+      >
+        <input matStartDate placeholder="Start date" formControlName="start" />
+        <input matEndDate placeholder="End date" formControlName="end" />
+      </mat-date-range-input>
+      <mat-hint class="text-gray-300">MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="campaignOnePicker"
+      ></mat-datepicker-toggle>
+      <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+    </mat-form-field>
+  </div>
+  <div class="flex flex-row gap-2">
+    <app-day-picker
+      [startDate]="calendar.startDate"
+      [endDate]="calendar.endDate"
+      [calendarDays]="calendar.calendarDays"
+      (selectedCalendarDay)="onCalendarDaySelected($event)"
+    ></app-day-picker>
+  </div>
+</div>
