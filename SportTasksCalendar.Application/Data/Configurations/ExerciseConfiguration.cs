@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using SportTasksCalendar.Application.Data.Converters;
 using SportTasksCalendar.Application.Models;
 
 namespace SportTasksCalendar.Application.Data.Configurations;
@@ -22,5 +23,13 @@ public class ExerciseConfiguration : IEntityTypeConfiguration<Exercise>
         
         builder.Property(e => e.Status) 
             .IsRequired();
+
+        builder.Property(e => e.Status)
+            .HasConversion(new ExerciseStatusConverter())
+            .IsUnicode(false);
+        
+        builder.Property(e => e.Category)
+            .HasConversion(new ExerciseCategoryConverter())
+            .IsUnicode(false);
     }
 }
