@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SportTasksCalendar.Application.Models;
-using SportTasksCalendar.Application.Models.Enums;
 
 namespace SportTasksCalendar.Application.Data.Configurations;
 
@@ -23,15 +22,5 @@ public class ExerciseConfiguration : IEntityTypeConfiguration<Exercise>
         
         builder.Property(e => e.Status) 
             .IsRequired();
-        
-        builder.Property(e => e.Status)
-            .HasConversion(
-                v => v.ToString(),
-                v => (ExerciseStatus)Enum.Parse(typeof(ExerciseStatus), v));
-        
-        builder.Property(e => e.Category)
-            .HasConversion(
-                v => v.ToString(),
-                v => (ExerciseCategory)Enum.Parse(typeof(ExerciseCategory), v));
     }
 }
