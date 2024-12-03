@@ -1,11 +1,11 @@
 ﻿using SportTasksCalendar.Application.Models;
 
-namespace SportTasksCalendar.Application.Repositories
+namespace SportTasksCalendar.Application.Services
 {
-    public interface IExerciseRepository
+    public interface IExerciseService
     {
         Task<Exercise?> GetExerciseByIdAsync(Guid id);
-        Task<IEnumerable<Exercise>> GetAllCalendarDayExercisesAsync(Guid calendarDayId);
+        Task<IEnumerable<Exercise>> GetAllExercisesByCalendarDayIdAsync(Guid calendarDayId);
         Task AddExerciseAsync(Exercise exercise);
         Task UpdateExerciseAsync(Exercise exercise);
         Task DeleteExerciseAsync(Guid id);

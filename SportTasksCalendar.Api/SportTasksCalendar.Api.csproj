@@ -20,6 +20,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\SportTasksCalendar.Application\SportTasksCalendar.Application.csproj" />
+      <ProjectReference Include="..\SportTasksCalendar.Contracts\SportTasksCalendar.Contracts.csproj" />
     </ItemGroup>
 
     <ItemGroup>

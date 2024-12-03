@@ -14,7 +14,7 @@ public class Exercise
 
     public Guid CalendarDayId { get; set; }
 
-    public required CalendarDay CalendarDay { get; set; }
+    public CalendarDay CalendarDay { get; set; }
 
     public string GetProgressIndicator()
     {

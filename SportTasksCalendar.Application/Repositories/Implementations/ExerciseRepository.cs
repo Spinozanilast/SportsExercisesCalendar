@@ -1,4 +1,5 @@
-﻿using SportTasksCalendar.Application.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SportTasksCalendar.Application.Data;
 using SportTasksCalendar.Application.Models;
 
 namespace SportTasksCalendar.Application.Repositories.Implementations;
@@ -7,34 +8,37 @@ public class ExerciseRepository(ApplicationDbContext dbContext) : IExerciseRepos
 {
     private readonly ApplicationDbContext _dbContext = dbContext;
 
-    public Task<IEnumerable<Exercise>> GetExercisesByCalendarDayIdAsync(Guid calendarDayId)
+    public async Task<Exercise?> GetExerciseByIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        return await _dbContext.Exercises.FindAsync(id);
     }
 
-    public Task<Exercise> GetExerciseByIdAsync(Guid id)
+    public async Task<IEnumerable<Exercise>> GetAllCalendarDayExercisesAsync(Guid calendarDayId)
     {
-        throw new NotImplementedException();
+        return await _dbContext.Exercises.Where(e => e.CalendarDayId == calendarDayId).ToListAsync();
     }
 
-    public Task AddExerciseAsync(Exercise exercise)
+    public async Task AddExerciseAsync(Exercise exercise)
     {
-        throw new NotImplementedException();
+        _dbContext.Exercises.Add(exercise);
+        await _dbContext.SaveChangesAsync();
     }
 
-    public Task UpdateExerciseAsync(Exercise exercise)
+    public async Task UpdateExerciseAsync(Exercise exercise)
     {
-        throw new NotImplementedException();
+        _dbContext.Exercises.Attach(exercise);
+        var entry = _dbContext.Entry(exercise);
+        entry.State = EntityState.Modified;
+        await _dbContext.SaveChangesAsync();
     }
 
-    public Task DeleteExerciseAsync(Guid id)
+    public async Task DeleteExerciseAsync(Guid id)
     {
-        throw new NotImplementedException();
-    }
-
-    public Task<IEnumerable<Exercise>> GetExercisesByDateRangeAsync(Guid calendarDayId, DateOnly startDate,
-        DateOnly endDate)
-    {
-        throw new NotImplementedException();
+        var exercise = await _dbContext.Exercises.FindAsync(id);
+        if (exercise is not null)
+        {
+            _dbContext.Exercises.Remove(exercise);
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

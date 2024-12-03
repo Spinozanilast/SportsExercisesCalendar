@@ -9,41 +9,41 @@ namespace SportTasksCalendar.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CalendarController(ICalendarService calendarService) : ControllerBase
+    public class CalendarDayController(ICalendarDayService calendarDayService) : ControllerBase
     {
-        private readonly ICalendarService _calendarService = calendarService;
+        private readonly ICalendarDayService _calendarDayService = calendarDayService;
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:guid}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetCalendarById(Guid id)
+        public async Task<IActionResult> GetCalendarDayById(Guid id)
         {
-            var calendar = await _calendarService.GetCalendarByIdAsync(id);
-            if (calendar == null)
+            var calendarDay = await _calendarDayService.GetCalendarDayByIdAsync(id);
+            if (calendarDay == null)
             {
                 return NotFound();
             }
 
-            return Ok(calendar);
+            return Ok(calendarDay);
         }
 
-        [HttpGet]
+        [HttpGet("by-calendar/{calendarId:guid}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAllCalendars()
+        public async Task<IActionResult> GetCalendarDaysByCalendarId(Guid calendarId)
         {
-            var calendars = await _calendarService.GetAllCalendarsAsync();
-            return Ok(calendars);
+            var calendarDays = await _calendarDayService.GetCalendarDaysByCalendarId(calendarId);
+            return Ok(calendarDays);
         }
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddCalendar(CalendarRequest calendarRequest)
+        public async Task<IActionResult> AddCalendarDay(CalendarDayRequest calendarDayRequest)
         {
             try
             {
-                await _calendarService.AddCalendarAsync(calendarRequest.ToEntity(out var newCalendarId));
-                return CreatedAtAction(nameof(GetCalendarById), new { id = newCalendarId }, calendarRequest);
+                await _calendarDayService.AddCalendarDayAsync(calendarDayRequest.ToEntity(out var newCalendarDayId));
+                return CreatedAtAction(nameof(GetCalendarDayById), new { id = newCalendarDayId }, calendarDayRequest);
             }
             catch (ValidationException ex)
             {
@@ -54,16 +54,16 @@ namespace SportTasksCalendar.Controllers
         [HttpPut("{id:guid}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateCalendar(Guid id, Calendar calendar)
+        public async Task<IActionResult> UpdateCalendarDay(Guid id, CalendarDay calendarDay)
         {
-            if (id != calendar.Id)
+            if (id != calendarDay.Id)
             {
                 return BadRequest("ID mismatch");
             }
 
             try
             {
-                await _calendarService.UpdateCalendarAsync(calendar);
+                await _calendarDayService.UpdateCalendarDayAsync(calendarDay);
                 return NoContent();
             }
             catch (ValidationException ex)
@@ -72,11 +72,11 @@ namespace SportTasksCalendar.Controllers
             }
         }
 
-        [HttpDelete("{id:guid}")]
+        [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> DeleteCalendar(Guid id)
+        public async Task<IActionResult> DeleteCalendarDay(Guid id)
         {
-            await _calendarService.DeleteCalendarAsync(id);
+            await _calendarDayService.DeleteCalendarDayAsync(id);
             return NoContent();
         }
     }
