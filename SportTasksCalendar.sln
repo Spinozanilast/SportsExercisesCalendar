@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportTasksCalendar.Applicat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportTasksCalendar.Contracts", "SportTasksCalendar.Contracts\SportTasksCalendar.Contracts.csproj", "{6773B727-7553-4A88-A061-2DA9C004FACF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AE9E1999-CE24-43CB-9DD7-B8798E27A6AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportTasksCalendar.Application.Tests", "SportTasksCalendar.Application.Tests\SportTasksCalendar.Application.Tests.csproj", "{12334A92-99E2-4870-A48E-57E54B42C2BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,12 @@ Global
 		{6773B727-7553-4A88-A061-2DA9C004FACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6773B727-7553-4A88-A061-2DA9C004FACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6773B727-7553-4A88-A061-2DA9C004FACF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12334A92-99E2-4870-A48E-57E54B42C2BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12334A92-99E2-4870-A48E-57E54B42C2BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12334A92-99E2-4870-A48E-57E54B42C2BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12334A92-99E2-4870-A48E-57E54B42C2BD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{12334A92-99E2-4870-A48E-57E54B42C2BD} = {AE9E1999-CE24-43CB-9DD7-B8798E27A6AB}
 	EndGlobalSection
 EndGlobal
