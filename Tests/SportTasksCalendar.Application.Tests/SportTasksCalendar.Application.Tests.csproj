@@ -24,7 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\SportTasksCalendar.Application\SportTasksCalendar.Application.csproj" />
+      <ProjectReference Include="..\..\SportTasksCalendar.Application\SportTasksCalendar.Application.csproj" />
     </ItemGroup>
 
 </Project>
