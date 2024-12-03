@@ -12,7 +12,7 @@ using SportTasksCalendar.Application.Data;
 namespace SportTasksCalendar.Application.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241203064155_InitMigration")]
+    [Migration("20241203070218_InitMigration")]
     partial class InitMigration
     {
         /// <inheritdoc />
@@ -49,22 +49,19 @@ namespace SportTasksCalendar.Application.Data.Migrations
 
             modelBuilder.Entity("SportTasksCalendar.Application.Models.CalendarDay", b =>
                 {
-                    b.Property<Guid>("CalendarId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("CalendarId1")
+                    b.Property<Guid>("CalendarId")
                         .HasColumnType("uuid");
 
                     b.Property<DateOnly>("Date")
                         .HasColumnType("date");
 
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
+                    b.HasKey("Id");
 
-                    b.HasKey("CalendarId");
-
-                    b.HasIndex("CalendarId1");
+                    b.HasIndex("CalendarId");
 
                     b.HasIndex("Date", "CalendarId")
                         .IsUnique()
@@ -115,7 +112,7 @@ namespace SportTasksCalendar.Application.Data.Migrations
                 {
                     b.HasOne("SportTasksCalendar.Application.Models.Calendar", "Calendar")
                         .WithMany("CalendarDays")
-                        .HasForeignKey("CalendarId1")
+                        .HasForeignKey("CalendarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

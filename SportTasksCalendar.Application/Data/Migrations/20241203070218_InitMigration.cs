@@ -29,17 +29,16 @@ namespace SportTasksCalendar.Application.Data.Migrations
                 name: "CalendarDays",
                 columns: table => new
                 {
-                    CalendarId = table.Column<Guid>(type: "uuid", nullable: false),
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Date = table.Column<DateOnly>(type: "date", nullable: false),
-                    CalendarId1 = table.Column<Guid>(type: "uuid", nullable: false)
+                    CalendarId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CalendarDays", x => x.CalendarId);
+                    table.PrimaryKey("PK_CalendarDays", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CalendarDays_Calendars_CalendarId1",
-                        column: x => x.CalendarId1,
+                        name: "FK_CalendarDays_Calendars_CalendarId",
+                        column: x => x.CalendarId,
                         principalTable: "Calendars",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -65,14 +64,14 @@ namespace SportTasksCalendar.Application.Data.Migrations
                         name: "FK_Exercises_CalendarDays_CalendarDayId",
                         column: x => x.CalendarDayId,
                         principalTable: "CalendarDays",
-                        principalColumn: "CalendarId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CalendarDays_CalendarId1",
+                name: "IX_CalendarDays_CalendarId",
                 table: "CalendarDays",
-                column: "CalendarId1");
+                column: "CalendarId");
 
             migrationBuilder.CreateIndex(
                 name: "ux_calendar_day",
