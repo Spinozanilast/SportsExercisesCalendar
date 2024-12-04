@@ -81,12 +81,13 @@ namespace SportTasksCalendar.Application.Data
                     {
                         Id = Guid.NewGuid(),
                         Name = $"Exercise {exercise}",
+                        Goal = Random.Shared.Next(1,2000),
                         Description = $"Description of exercise {exercise} for day {calendarDays.IndexOf(calendarDay)}",
                         StartDate = startTime,
                         EndDate = endTime,
                         Category = category,
                         Status = ExerciseStatus.NotStarted,
-                        CalendarDayId = calendarDay.Id
+                        CalendarDayId = calendarDay.Id,
                     };
 
                     exercises.Add(newExercise);

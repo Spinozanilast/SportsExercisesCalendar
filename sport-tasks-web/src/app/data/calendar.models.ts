@@ -1,5 +1,4 @@
 import { CalendarDay } from './calendar-day.model';
-import { ExerciseCategory, ExerciseStatus } from './calendar.enums';
 
 export interface Calendar {
   id: string;

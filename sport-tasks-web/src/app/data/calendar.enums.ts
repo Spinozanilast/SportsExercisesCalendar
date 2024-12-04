@@ -1,14 +1,8 @@
-export enum ExerciseCategory {
-  Run = 'Run',
-  Swim = 'Swim',
-  Cycling = 'Cycling',
-  Yoga = 'Yoga',
-  StrengthTraining = 'StrengthTraining',
-  NotDefined = 'NotDefined',
+export enum ExerciseStatusValues {
+  NotStarted = 0,
+  InProgress = 1,
+  Completed = 2,
 }
 
-export enum ExerciseStatus {
-  NotStarted = 'NotStarted',
-  InProgress = 'InProgress',
-  Completed = 'Completed',
-}
+export type ExerciseStatus =
+  (typeof ExerciseStatusValues)[keyof typeof ExerciseStatusValues];

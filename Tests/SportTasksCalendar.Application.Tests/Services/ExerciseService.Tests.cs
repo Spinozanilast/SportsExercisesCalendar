@@ -25,7 +25,7 @@ namespace SportTasksCalendar.Application.Tests.Services
         {
             // Arrange
             var exerciseId = Guid.NewGuid();
-            var exercise = new Exercise { Id = exerciseId, Name = "Test Exercise" };
+            var exercise = new Exercise { Id = exerciseId, Name = "Test Exercise", Goal = 2};
             _exerciseRepositoryMock.Setup(repo => repo.GetExerciseByIdAsync(exerciseId))
                                    .ReturnsAsync(exercise);
 
@@ -56,7 +56,14 @@ namespace SportTasksCalendar.Application.Tests.Services
         {
             // Arrange
             var calendarDayId = Guid.NewGuid();
-            var exercises = new List<Exercise> { new Exercise { Id = Guid.NewGuid(), Name = "Morning Run", CalendarDayId = calendarDayId } };
+            var exercises = new List<Exercise> { new Exercise
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Morning Run",
+                    CalendarDayId = calendarDayId,
+                    Goal = 10
+                }
+            };
             _exerciseRepositoryMock.Setup(repo => repo.GetAllCalendarDayExercisesAsync(calendarDayId))
                                    .ReturnsAsync(exercises);
 
@@ -71,7 +78,17 @@ namespace SportTasksCalendar.Application.Tests.Services
         public async Task AddExerciseAsync_ShouldValidateAndAddExercise()
         {
             // Arrange
-            var exercise = new Exercise { Id = Guid.NewGuid(), Name = "Test Exercise", StartDate = new TimeOnly(6, 0), EndDate = new TimeOnly(7, 0), Category = ExerciseCategory.Run };
+            var exercise = new Exercise
+            {
+                Name = "Test Exercise",
+                Goal = 6
+            };
+            exercise.Id = Guid.NewGuid();
+            exercise.StartDate = new TimeOnly(6,
+                0);
+            exercise.EndDate = new TimeOnly(7,
+                0);
+            exercise.Category = ExerciseCategory.Run;
             _validatorMock.Setup(v => v.ValidateAsync(exercise, default))
                           .ReturnsAsync(new ValidationResult());
             _exerciseRepositoryMock.Setup(repo => repo.AddExerciseAsync(exercise))
@@ -89,7 +106,17 @@ namespace SportTasksCalendar.Application.Tests.Services
         public async Task AddExerciseAsync_ShouldThrowValidationException_WhenValidationFails()
         {
             // Arrange
-            var exercise = new Exercise { Id = Guid.NewGuid(), Name = "", StartDate = new TimeOnly(6, 0), EndDate = new TimeOnly(7, 0), Category = ExerciseCategory.Run };
+            var exercise = new Exercise
+            {
+                Id = Guid.NewGuid(),
+                Name = "",
+                StartDate = new TimeOnly(6,
+                    0),
+                EndDate = new TimeOnly(7,
+                    0),
+                Category = ExerciseCategory.Run,
+                Goal = 100
+            };
             var validationResult = new ValidationResult(new List<ValidationFailure> { new ValidationFailure("Name", "Exercise name cannot be empty.") });
             _validatorMock.Setup(v => v.ValidateAsync(exercise, default))
                           .ReturnsAsync(validationResult);
@@ -106,7 +133,17 @@ namespace SportTasksCalendar.Application.Tests.Services
         public async Task UpdateExerciseAsync_ShouldValidateAndUpdateExercise()
         {
             // Arrange
-            var exercise = new Exercise { Id = Guid.NewGuid(), Name = "Updated Exercise", StartDate = new TimeOnly(6, 0), EndDate = new TimeOnly(7, 0), Category = ExerciseCategory.Run };
+            var exercise = new Exercise
+            {
+                Name = "Updated Exercise",
+                Goal = 100
+            };
+            exercise.Id = Guid.NewGuid();
+            exercise.StartDate = new TimeOnly(6,
+                0);
+            exercise.EndDate = new TimeOnly(7,
+                0);
+            exercise.Category = ExerciseCategory.Run;
             _validatorMock.Setup(v => v.ValidateAsync(exercise, default))
                           .ReturnsAsync(new ValidationResult());
             _exerciseRepositoryMock.Setup(repo => repo.UpdateExerciseAsync(exercise))

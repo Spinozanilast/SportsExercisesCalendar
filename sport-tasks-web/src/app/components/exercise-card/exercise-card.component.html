@@ -1,18 +1,27 @@
 @if(exercise) {
-<mat-card appearance="outlined">
+<mat-card appearance="outlined" class="w-fit h-full">
   <mat-card-header>
     <mat-card-title-group class="font-bold text-xl">
-      <mat-card-title class="title">{{ exercise.name }}</mat-card-title>
-      <mat-card-subtitle class="title">{{
-        exercise.category
-      }}</mat-card-subtitle>
+      <mat-card-title class="title whitespace-nowrap">{{
+        exercise.name
+      }}</mat-card-title>
+      <mat-card-subtitle class="title">{{ category?.name }}</mat-card-subtitle>
     </mat-card-title-group>
   </mat-card-header>
   <mat-card-content>
-    <div class="flex flex-row gap-2 justify-center items-center p-4">
+    <div
+      class="flex flex-row gap-2 justify-center items-center p-4 text-indigo-200"
+    >
       <mat-icon>schedule</mat-icon>
       <span class="time-span">{{ exercise.startDate }}</span> -
       <span class="time-span">{{ exercise.endDate }}</span>
+    </div>
+    <div
+      class="flex flex-row gap-2 justify-center items-center p-4 text-indigo-200"
+    >
+      <mat-icon>flag</mat-icon>
+      - <span class="text-gray-300 time-span">{{ exercise.goal }}</span>
+      <span class="time-span"> {{ category?.progressIndicator }}</span>
     </div>
     <div class="flex flex-col gap-2">
       <p class="text-base text-gray-300">
@@ -23,13 +32,21 @@
   <mat-divider></mat-divider>
   <mat-card-actions class="flex flex-row justify-between items-center gap-2">
     @if(exercise.status === statusEnum.InProgress) {
-    <button mat-stroked-button class="text-white">
-      <mat-icon>pause</mat-icon>
-      Pause
+    <button
+      mat-stroked-button
+      class="text-white"
+      (click)="setExerciseStatus(statusEnum.Completed)"
+    >
+      <mat-icon>stop</mat-icon>
+      Stop
     </button>
     } @else if (exercise.status === statusEnum.Completed || exercise.status ===
     statusEnum.NotStarted) {
-    <button mat-stroked-button class="text-white" (click)="startExercise()">
+    <button
+      mat-stroked-button
+      class="text-white"
+      (click)="setExerciseStatus(statusEnum.InProgress)"
+    >
       <mat-icon>play_arrow</mat-icon>
       Start
     </button>

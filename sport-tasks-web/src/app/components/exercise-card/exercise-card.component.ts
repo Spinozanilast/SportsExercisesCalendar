@@ -1,11 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Inject, Input, OnInit } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { Exercise } from '@data/exercise.model';
 import { MatCardModule } from '@angular/material/card';
 import { MatButton } from '@angular/material/button';
 import { MatDivider } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
-import { ExerciseStatus } from '@data/calendar.enums';
+import { ExerciseStatusValues } from '@data/calendar.enums';
+import { ExerciseCategoryService } from '@services/exercise-category.service';
+import { ExerciseCategoryInfo } from '@data/exercise-category-info.model';
 
 @Component({
   selector: 'app-exercise-card',
@@ -14,17 +16,28 @@ import { ExerciseStatus } from '@data/calendar.enums';
   templateUrl: './exercise-card.component.html',
   styleUrl: './exercise-card.component.css',
 })
-export class ExerciseCardComponent {
+export class ExerciseCardComponent implements OnInit {
+  private readonly exerciseCategoryInfo = inject(ExerciseCategoryService);
   @Input() exercise!: Exercise;
-  statusEnum = ExerciseStatus;
+  statusEnum = ExerciseStatusValues;
   isEditing: boolean = false;
+  category?: ExerciseCategoryInfo;
+
+  ngOnInit(): void {
+    this.exerciseCategoryInfo.getExerciseCategories().subscribe({
+      next: (categories) => {
+        this.category = categories.find(
+          (category) => category.category === this.exercise.category
+        );
+      },
+    });
+  }
 
   toggleEditing(): void {
     this.isEditing = !this.isEditing;
   }
 
-  startExercise(): void {
-    console.log('start');
-    this.exercise.status = ExerciseStatus.InProgress;
+  setExerciseStatus(status: ExerciseStatusValues): void {
+    this.exercise.status = status;
   }
 }

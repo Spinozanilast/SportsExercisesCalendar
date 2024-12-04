@@ -79,10 +79,16 @@ export class DayPickerComponent {
 
   dateChanged(event: MatDatepickerInputEvent<Date>): void {
     if (event.value) {
+      const selectedDay = this.formatDate(event.value!);
       const day: CalendarDay | undefined = this.calendarDays.find((day) => {
-        return day.date.toString() === this.formatDate(event.value!);
+        return day.date.toString() === selectedDay;
       });
-      this.selectedCalendarDay.emit(day);
+      if (day) {
+        this.selectedCalendarDay.emit(day);
+      } else {
+        // TODO: You can redo controller logic in back to insert new day
+        // for full here (better to do client interaction with some safe button)
+      }
     }
   }
 }

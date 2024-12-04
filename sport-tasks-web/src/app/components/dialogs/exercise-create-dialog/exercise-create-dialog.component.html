@@ -1,0 +1,59 @@
+<div class="p-4">
+  <h2 mat-dialog-title class="text-fuchsia-200">Create Exercise</h2>
+  <mat-dialog-content>
+    <form [formGroup]="exerciseForm" class="w-full p-5 flex flex-col gap-3">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" required />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+      <mat-label>Start Time:</mat-label>
+      <input
+        class="bg-neutral-800 text-gray-100 p-1"
+        matInput
+        [format]="24"
+        placeholder="13:00"
+        [ngxMatTimepicker]="startTimepicker"
+        formControlName="startDate"
+      />
+      <mat-label>End Time:</mat-label>
+      <input
+        class="bg-neutral-800 text-gray-100 p-1 shadow-md"
+        matInput
+        [format]="24"
+        placeholder="14:00"
+        [ngxMatTimepicker]="endTimepicker"
+        formControlName="endDate"
+      />
+      <mat-form-field>
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category">
+          @for (category of categories; track $index) {
+          <mat-option [value]="category.category">{{
+            category.name
+          }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions class="flex flex-row justify-center items-center gap-2">
+    <button mat-stroked-button (click)="onCancel()">
+      <mat-icon>cancel</mat-icon>Cancel
+    </button>
+    <button
+      mat-stroked-button
+      (click)="onSubmit()"
+      [disabled]="!exerciseForm.valid"
+    >
+      <mat-icon>create</mat-icon>
+      Create
+    </button>
+  </mat-dialog-actions>
+</div>
+
+<ngx-mat-timepicker #startTimepicker readonly></ngx-mat-timepicker>
+<ngx-mat-timepicker #endTimepicker readonly></ngx-mat-timepicker>

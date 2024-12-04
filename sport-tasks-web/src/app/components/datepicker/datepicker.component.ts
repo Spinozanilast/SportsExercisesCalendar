@@ -61,7 +61,6 @@ export class DatepickerComponent implements OnInit {
   }
 
   onCalendarDaySelected(day: CalendarDay): void {
-    console.log(day);
     this.calendarDaySelected.emit(day);
   }
 }

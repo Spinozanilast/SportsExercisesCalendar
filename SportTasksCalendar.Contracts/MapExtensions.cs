@@ -32,6 +32,7 @@ public static class MapExtensions
         {
             Id = newExerciseId = Guid.NewGuid(),
             Name = exerciseRequest.Name,
+            Goal = exerciseRequest.Goal,
             Description = exerciseRequest.Description,
             CalendarDayId = exerciseRequest.CalendarDayId,
             StartDate = exerciseRequest.StartDate,

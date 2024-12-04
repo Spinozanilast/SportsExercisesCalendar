@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SportTasksCalendar.Application.Models;
+using SportTasksCalendar.Application.Models.Enums;
 
 namespace SportTasksCalendar.Application.Data.Configurations;
 

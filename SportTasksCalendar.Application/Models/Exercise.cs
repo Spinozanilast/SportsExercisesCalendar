@@ -7,9 +7,11 @@ public class Exercise
 {
     public Guid Id { get; set; }
     public required string Name { get; set; }
+    public required double Goal { get; set; }
     public string Description { get; set; } = string.Empty;
     public TimeOnly StartDate { get; set; }
     public TimeOnly EndDate { get; set; }
+    
 
     public ExerciseCategory Category { get; set; }
 

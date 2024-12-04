@@ -4,6 +4,7 @@ namespace SportTasksCalendar.Contracts.DTOs;
 
 public record ExerciseRequest(
     string Name,
+    double Goal,
     string Description,
     Guid CalendarDayId,
     TimeOnly StartDate,
